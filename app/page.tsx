@@ -20,14 +20,13 @@ const WalletDisconnectButtonDynamic = dynamic(
 );
 
 type NFT = {
-  name: string;
-  description: string;
-  image: string;
-  symbol: string;
-  collection: {
-    name: string;
-    family: string;
-  };
+  atributes: [{}],
+  description: string,
+  image: string,
+  name: string,
+  properties: {},
+  symbol: string,
+
 }[];
 
 
@@ -36,7 +35,7 @@ export default function Home() {
   const { publicKey } = useWallet()
   const wallet = publicKey?.toString();
 
-  const [nftsOwned, setNFTsOwned] = useState<NFT[]>([]);
+  const [nftsOwned, setNFTsOwned] = useState<any[]>([]);
 
   const getNFT = async () => {
     if (!publicKey) return
@@ -63,7 +62,7 @@ export default function Home() {
               nftDataArray.push(data);
 
               if (nftDataArray.length === NFTs.length) {
-                setNFTsOwned(nftDataArray);
+                return setNFTsOwned(nftDataArray);
               }
             })
         }
@@ -78,11 +77,11 @@ export default function Home() {
   return (
     <>
       <main className="flex min-h-screen flex-col items-center justify-center p-24">
-        
-          <div className="flex flex-col items-center justify-center">
-            <WalletMultiButtonDynamic />
-            <WalletDisconnectButtonDynamic />
-          </div>
+
+        <div className="flex flex-col items-center justify-center">
+          <WalletMultiButtonDynamic />
+          <WalletDisconnectButtonDynamic />
+        </div>
         <div className="flex flex-col items-center gap-4">
           <h1 className="font-bold">Your NFTs</h1>
           <div>
@@ -99,14 +98,14 @@ export default function Home() {
             {nftsOwned && wallet ? (
               <div className="grid grid-cols-3 gap-4">
                 {nftsOwned.map((nft, index) => (
-                    <div key={index} className="flex flex-col items-center justify-center border rounded-md p-2">
-                      <div>
-                        <Image className="rounded-xl" src={nft.image} width={150} height={150} alt="" priority />
-                      </div>
-                      <div>
-                        {nft.name}
-                      </div>
+                  <div key={index} className="flex flex-col items-center justify-center border rounded-md p-2">
+                    <div>
+                      <Image className="rounded-xl" src={nft.image} width={150} height={150} alt="" priority />
                     </div>
+                    <div>
+                      {nft.name}
+                    </div>
+                  </div>
                 ))}
               </div>
             )

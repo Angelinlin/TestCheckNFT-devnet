@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
-
-module.exports = {
-    nextConfig,
+const nextConfig = {
     images: {
         domains: ['ipfs.thirdwebcdn.com', 'arweave.net'],
     }
 }
+
+module.exports = nextConfig
+    
+

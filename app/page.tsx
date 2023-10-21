@@ -78,12 +78,11 @@ export default function Home() {
   return (
     <>
       <main className="flex min-h-screen flex-col items-center justify-center p-24">
-        <div>
-          <div>
+        
+          <div className="flex flex-col items-center justify-center">
             <WalletMultiButtonDynamic />
             <WalletDisconnectButtonDynamic />
           </div>
-        </div>
         <div className="flex flex-col items-center gap-4">
           <h1 className="font-bold">Your NFTs</h1>
           <div>
@@ -100,16 +99,14 @@ export default function Home() {
             {nftsOwned && wallet ? (
               <div className="grid grid-cols-3 gap-4">
                 {nftsOwned.map((nft, index) => (
-                  <>
                     <div key={index} className="flex flex-col items-center justify-center border rounded-md p-2">
                       <div>
                         <Image className="rounded-xl" src={nft.image} width={150} height={150} alt="" priority />
                       </div>
                       <div>
-                        index: {index}
+                        {nft.name}
                       </div>
                     </div>
-                  </>
                 ))}
               </div>
             )

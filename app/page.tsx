@@ -3,7 +3,7 @@ import {
   resolveToWalletAddress,
   getParsedNftAccountsByOwner,
 } from "@nfteyez/sol-rayz";
-import { MetadataKey } from "@nfteyez/sol-rayz/dist/config/metaplex";
+import { useEffect } from "react";
 import { useWallet } from "@solana/wallet-adapter-react"
 import { Connection, clusterApiUrl } from "@solana/web3.js";
 import dynamic from "next/dynamic"
@@ -28,6 +28,7 @@ type NFT = {
   symbol: string,
 
 }[];
+
 
 
 export default function Home() {
@@ -73,6 +74,12 @@ export default function Home() {
     }
 
   }
+
+useEffect(() => {
+  if(!publicKey) return setNFTsOwned([]);
+}, [publicKey])
+
+
 
   return (
     <>

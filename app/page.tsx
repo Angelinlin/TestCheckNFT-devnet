@@ -101,6 +101,11 @@ export default function Home() {
               </button>
             </div>
             <div>
+              <button onClick={() => {console.log("sign in")}}>
+                Sign In
+              </button>
+            </div>
+            <div>
 
               <div className="grid grid-cols-3 gap-4">
                 {nftsOwned.map((nft, index) => (

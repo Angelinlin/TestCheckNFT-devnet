@@ -15,7 +15,7 @@ type Props = {
 
 export const Wallet: FC<Props> = ({ children }) => {
     // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
-    const network = WalletAdapterNetwork.Devnet;
+    const network = WalletAdapterNetwork.Mainnet;
 
     // You can also provide a custom RPC endpoint.
     const endpoint = useMemo(() => clusterApiUrl(network), [network]);
@@ -26,7 +26,7 @@ export const Wallet: FC<Props> = ({ children }) => {
             new PhantomWalletAdapter(),
         ],
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [network || null]
+        [network]
     );
 
     return (
